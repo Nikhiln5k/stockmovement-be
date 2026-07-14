@@ -3,12 +3,16 @@ import cors from 'cors';
 import compression from "compression";
 import { errorHandler } from './middleware/errorHandler.middlware';
 import routes from './routes';
+import { setupSwagger } from './swagger';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 app.use(compression());
+
+// API documentation
+setupSwagger(app);
 
 // API Routes
 app.use('/api', routes)
